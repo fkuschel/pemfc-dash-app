@@ -55,8 +55,8 @@ bs_5_css = ('https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min
 external_stylesheets = [bs_5_css]
 app = DashProxy(__name__, external_stylesheets=external_stylesheets,
                 suppress_callback_exceptions=True,
-                transforms=[MultiplexerTransform(),
-                           ServersideOutputTransform()])
+                transforms=[MultiplexerTransform()])#,
+                           #ServersideOutputTransform()])
 
 # app = dash.Dash(__name__, external_stylesheets=external_stylesheets,
 #                 long_callback_manager=long_callback_manager,

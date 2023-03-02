@@ -44,7 +44,7 @@ tqdm.pandas()
 # pandarallel.initialize()
 # from multiprocesspandas import applyparallel
 
-server = app.server
+#server = app.server
 
 app._favicon = 'logo-zbt.ico'
 app.title = 'PEMFC Model'

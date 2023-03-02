@@ -9,29 +9,29 @@ from dash_extensions.enrich import DashProxy, MultiplexerTransform, \
     ServersideOutputTransform, RedisStore, FileSystemStore
 
 
-def clear_cache(path):
-    if os.path.exists(path):
-        shutil.rmtree(path)
-    os.makedirs(path)
-
-
-try:
-    import pemfc_dash.redis_credentials as rc
-    caching_backend = RedisStore(
-        host=rc.HOST_NAME,
-        password=rc.PASSWORD,
-        port=rc.PORT,
-        default_timeout=900)
-    try:
-        caching_backend.delete('test')
-    except (redis.exceptions.ConnectionError, ConnectionRefusedError) as E:
-        caching_backend = FileSystemStore(cache_dir='/temp/file_system_store')
-    except (redis.exceptions.ResponseError, redis.exceptions.RedisError):
-        pass
-except ImportError:
-    tmpdir = os.path.join(os.getcwd(), '/temp/file_system_store')
-    clear_cache(tmpdir)
-    caching_backend = FileSystemStore(cache_dir=tmpdir)
+# def clear_cache(path):
+#     if os.path.exists(path):
+#         shutil.rmtree(path)
+#     os.makedirs(path)
+#
+#
+# try:
+#     import pemfc_dash.redis_credentials as rc
+#     caching_backend = RedisStore(
+#         host=rc.HOST_NAME,
+#         password=rc.PASSWORD,
+#         port=rc.PORT,
+#         default_timeout=900)
+#     try:
+#         caching_backend.delete('test')
+#     except (redis.exceptions.ConnectionError, ConnectionRefusedError) as E:
+#         caching_backend = FileSystemStore(cache_dir='/temp/file_system_store')
+#     except (redis.exceptions.ResponseError, redis.exceptions.RedisError):
+#         pass
+# except ImportError:
+#     tmpdir = os.path.join(os.getcwd(), '/temp/file_system_store')
+#     clear_cache(tmpdir)
+#     caching_backend = FileSystemStore(cache_dir=tmpdir)
 
 
 # from celery import Celery
